@@ -326,7 +326,8 @@ if nav_choice == "🔍 Analyze Webpage":
                 value=get_label(prob).split()[0] + " Likelihood",
             )
         with kpi_col3:
-            macro_s = int(features["derived"]["macro_structure_score"] * 100)
+            macro_val = float(features.get("derived", {}).get("macro_score", mf.get("macro_structure_score", 0.5)))
+            macro_s = int(macro_val * 100)
             st.metric(label="Structural Quality", value=f"{macro_s}/100")
         with kpi_col4:
             has_schema = "Active (JSON-LD)" if features["schema"]["schema_present"] else "Missing"
@@ -400,11 +401,14 @@ if nav_choice == "🔍 Analyze Webpage":
         # TAB 2: STRUCTURE BREAKDOWN
         with tab_struct:
             st.subheader("Granular Webpage Quality Metrics")
+            macro_val = min(max(float(features.get("derived", {}).get("macro_score", mf.get("macro_structure_score", 0.5))), 0.0), 1.0)
+            meso_val = min(max(float(features.get("derived", {}).get("meso_score", mf.get("meso_structure_score", 0.5))), 0.0), 1.0)
+            micro_val = min(max(float(features.get("derived", {}).get("micro_score", mf.get("micro_structure_score", 0.5))), 0.0), 1.0)
             c1, c2, c3 = st.columns(3)
             with c1:
                 st.markdown("#### 🏢 Macro-Structure")
-                st.progress(features["derived"]["macro_structure_score"])
-                st.caption(f"Score: {int(features['derived']['macro_structure_score'] * 100)}%")
+                st.progress(macro_val)
+                st.caption(f"Score: {int(macro_val * 100)}%")
                 st.write(f"- **Word Count:** {features['content']['word_count']}")
                 st.write(f"- **Total Headings:** {features['structure']['heading_count']}")
                 st.write(f"- **H1 Headings:** {features['structure']['h1_count']}")
@@ -412,8 +416,8 @@ if nav_choice == "🔍 Analyze Webpage":
 
             with c2:
                 st.markdown("#### 📑 Meso-Structure")
-                st.progress(features["derived"]["meso_structure_score"])
-                st.caption(f"Score: {int(features['derived']['meso_structure_score'] * 100)}%")
+                st.progress(meso_val)
+                st.caption(f"Score: {int(meso_val * 100)}%")
                 st.write(f"- **Paragraphs:** {features['content']['paragraph_count']}")
                 st.write(f"- **Lists Count:** {features['content']['list_count']}")
                 st.write(f"- **Tables Count:** {features['content']['table_count']}")
@@ -421,8 +425,8 @@ if nav_choice == "🔍 Analyze Webpage":
 
             with c3:
                 st.markdown("#### 🔬 Micro-Structure & Signals")
-                st.progress(features["derived"]["micro_structure_score"])
-                st.caption(f"Score: {int(features['derived']['micro_structure_score'] * 100)}%")
+                st.progress(micro_val)
+                st.caption(f"Score: {int(micro_val * 100)}%")
                 st.write(f"- **Factual Density:** {features['content']['factual_density']:.3f}")
                 st.write(f"- **Numerical Claims:** {features['content']['number_count']}")
                 st.write(f"- **Phone Detected:** {'✅ Yes' if features['local_business']['has_phone'] else '❌ No'}")
