@@ -97,3 +97,10 @@ apps/cli/
 
 .claude/skills/add-changeset/
 docs/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+.pytest_cache/
