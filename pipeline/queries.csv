@@ -1,0 +1,301 @@
+query_id,category,city,query_text
+Q01,gym,Kochi,best gym in Kochi for weight training
+Q02,gym,Thiruvananthapuram,top rated gym in Thiruvananthapuram with personal trainers
+Q03,gym,Kozhikode,affordable gym membership Kozhikode
+Q04,gym,Thrissur,24 hour gym in Thrissur
+Q05,gym,Kannur,women's only gym in Kannur
+Q06,chauffeur,Dubai,best chauffeur service in Dubai for airport transfer
+Q07,chauffeur,Abu Dhabi,luxury limo rental Abu Dhabi
+Q08,chauffeur,Doha,hourly chauffeur hire Doha
+Q09,chauffeur,Riyadh,corporate chauffeur service Riyadh
+Q10,chauffeur,Muscat,wedding limousine service Muscat
+Q11,kayaking,Alleppey,best kayaking tour in Alleppey backwaters
+Q12,kayaking,Munnar,guided kayaking experience Munnar
+Q13,kayaking,Goa,sunset kayaking tour Goa
+Q14,kayaking,Varkala,kayaking and snorkeling Varkala
+Q15,kayaking,Gokarna,kayak rental Gokarna beach
+Q16,dental,Kochi,best dental clinic in Kochi for implants
+Q17,dental,Bangalore,emergency dentist Bangalore open now
+Q18,dental,Chennai,pediatric dental clinic Chennai
+Q19,dental,Hyderabad,cosmetic dentist for teeth whitening Hyderabad
+Q20,dental,Coimbatore,affordable root canal treatment Coimbatore
+Q21,gym,Kollam,best gym in Kollam for weight loss
+Q22,gym,Alappuzha,affordable gym membership Alappuzha
+Q23,gym,Palakkad,top crossfit gym in Palakkad
+Q24,gym,Malappuram,24 hour gym in Malappuram
+Q25,gym,Kottayam,gym with personal trainer in Kottayam
+Q26,gym,Pathanamthitta,best gym for beginners in Pathanamthitta
+Q27,gym,Idukki,fitness center near me in Idukki
+Q28,gym,Wayanad,gym membership plans in Wayanad
+Q29,gym,Kasaragod,best gym in Kasaragod for bodybuilding
+Q30,gym,Ernakulam,ladies gym in Ernakulam
+Q31,gym,Kochi,crossfit gym in Kochi
+Q32,gym,Thiruvananthapuram,gym with swimming pool Thiruvananthapuram
+Q33,gym,Kozhikode,gym near railway station Kozhikode
+Q34,gym,Thrissur,best gym for weight loss Thrissur
+Q35,gym,Kannur,gym with sauna Kannur
+Q36,gym,Kollam,gym open early morning Kollam
+Q37,gym,Alappuzha,gym for seniors Alappuzha
+Q38,gym,Palakkad,budget gym Palakkad
+Q39,gym,Kottayam,gym with yoga classes Kottayam
+Q40,gym,Malappuram,best gym for students Malappuram
+Q41,chauffeur,Jeddah,best chauffeur service in Jeddah
+Q42,chauffeur,Dammam,luxury car with driver Dammam
+Q43,chauffeur,Manama,chauffeur hire Manama Bahrain
+Q44,chauffeur,Kuwait City,corporate chauffeur service Kuwait City
+Q45,chauffeur,Sharjah,airport transfer chauffeur Sharjah
+Q46,chauffeur,Ajman,limo rental Ajman
+Q47,chauffeur,Ras Al Khaimah,chauffeur service Ras Al Khaimah
+Q48,chauffeur,Al Ain,hourly car hire with driver Al Ain
+Q49,chauffeur,Salalah,chauffeur service Salalah Oman
+Q50,chauffeur,Khobar,corporate car service Khobar
+Q51,chauffeur,Dubai,wedding car hire Dubai
+Q52,chauffeur,Abu Dhabi,executive chauffeur service Abu Dhabi
+Q53,chauffeur,Doha,airport pickup chauffeur Doha
+Q54,chauffeur,Riyadh,limousine rental Riyadh
+Q55,chauffeur,Muscat,corporate car rental with driver Muscat
+Q56,chauffeur,Jeddah,airport transfer service Jeddah
+Q57,chauffeur,Dammam,chauffeur for business travel Dammam
+Q58,chauffeur,Manama,luxury limo Manama
+Q59,chauffeur,Kuwait City,chauffeur driven car rental Kuwait City
+Q60,chauffeur,Sharjah,wedding limousine Sharjah
+Q61,kayaking,Kumarakom,kayaking tour in Kumarakom backwaters
+Q62,kayaking,Pondicherry,kayaking experience Pondicherry
+Q63,kayaking,Port Blair,kayaking tour Andaman Islands
+Q64,kayaking,Kovalam,kayak rental Kovalam beach
+Q65,kayaking,Bekal,kayaking tour Bekal fort
+Q66,kayaking,Kollam,kayaking in Ashtamudi lake Kollam
+Q67,kayaking,Rameswaram,kayaking tour Rameswaram
+Q68,kayaking,Chilika,kayaking tour Chilika lake
+Q69,kayaking,Mangalore,kayaking near Mangalore
+Q70,kayaking,Udupi,kayak rental Udupi beach
+Q71,kayaking,Alleppey,night kayaking tour Alleppey
+Q72,kayaking,Munnar,kayaking and camping Munnar
+Q73,kayaking,Goa,mangrove kayaking tour Goa
+Q74,kayaking,Varkala,sunrise kayaking Varkala
+Q75,kayaking,Gokarna,guided kayak tour Gokarna
+Q76,kayaking,Kumarakom,bird watching kayak tour Kumarakom
+Q77,kayaking,Pondicherry,backwater kayaking Pondicherry
+Q78,kayaking,Port Blair,snorkeling and kayaking Andaman
+Q79,kayaking,Kovalam,sunset kayak tour Kovalam
+Q80,kayaking,Bekal,family kayaking tour Bekal
+Q81,dental,Mumbai,best dental clinic in Mumbai for implants
+Q82,dental,Delhi,emergency dentist Delhi open now
+Q83,dental,Pune,pediatric dental clinic Pune
+Q84,dental,Kolkata,cosmetic dentist Kolkata
+Q85,dental,Ahmedabad,affordable root canal treatment Ahmedabad
+Q86,dental,Jaipur,braces and orthodontist Jaipur
+Q87,dental,Lucknow,wisdom tooth extraction Lucknow
+Q88,dental,Mysore,dental clinic for veneers Mysore
+Q89,dental,Thiruvananthapuram,best dentist Thiruvananthapuram
+Q90,dental,Kozhikode,dental implants Kozhikode
+Q91,dental,Madurai,dental clinic Madurai
+Q92,dental,Nagpur,gum treatment clinic Nagpur
+Q93,dental,Surat,denture clinic Surat
+Q94,dental,Indore,dental scaling and cleaning Indore
+Q95,dental,Bhopal,invisalign clinic Bhopal
+Q96,dental,Mumbai,emergency dental care Mumbai
+Q97,dental,Delhi,best orthodontist Delhi
+Q98,dental,Pune,teeth whitening clinic Pune
+Q99,dental,Kolkata,dental crown treatment Kolkata
+Q100,dental,Ahmedabad,pediatric dentist Ahmedabad
+Q101,gym,Bangalore,personal training gym Bangalore
+Q102,gym,Chennai,powerlifting gym Chennai
+Q103,gym,Mumbai,women's fitness studio Mumbai
+Q104,gym,Pune,functional training gym Pune
+Q105,gym,Hyderabad,gym with nutrition counseling Hyderabad
+Q106,gym,Coimbatore,martial arts gym Coimbatore
+Q107,gym,Mangalore,gym for weight gain Mangalore
+Q108,gym,Mysore,group fitness classes Mysore
+Q109,gym,Madurai,gym near IT park Madurai
+Q110,gym,Vijayawada,corporate gym membership Vijayawada
+Q111,gym,Visakhapatnam,gym with physiotherapy Visakhapatnam
+Q112,gym,Nagpur,senior citizen fitness center Nagpur
+Q113,gym,Indore,gym open on Sundays Indore
+Q114,gym,Surat,gym with steam room Surat
+Q115,gym,Ahmedabad,boxing gym Ahmedabad
+Q116,gym,Jaipur,pilates studio Jaipur
+Q117,gym,Lucknow,gym for diabetics Lucknow
+Q118,gym,Kanpur,home gym setup service Kanpur
+Q119,gym,Bhopal,gym with locker facility Bhopal
+Q120,gym,Chandigarh,24 hour unmanned gym Chandigarh
+Q121,gym,Delhi,group workout classes Delhi
+Q122,gym,Kolkata,functional fitness gym Kolkata
+Q123,gym,Guwahati,strength and conditioning gym Guwahati
+Q124,gym,Patna,gym for athletes Patna
+Q125,gym,Ranchi,best gym near railway station Ranchi
+Q126,chauffeur,Dubai,long distance intercity chauffeur Dubai
+Q127,chauffeur,Abu Dhabi,VIP chauffeur service Abu Dhabi
+Q128,chauffeur,Doha,bilingual chauffeur service Doha
+Q129,chauffeur,Riyadh,chauffeur for medical appointments Riyadh
+Q130,chauffeur,Muscat,SUV chauffeur hire Muscat
+Q131,chauffeur,Jeddah,female chauffeur service Jeddah
+Q132,chauffeur,Dammam,monthly chauffeur package Dammam
+Q133,chauffeur,Manama,chauffeur for events Manama
+Q134,chauffeur,Kuwait City,premium sedan chauffeur Kuwait City
+Q135,chauffeur,Sharjah,Rolls Royce chauffeur hire Sharjah
+Q136,chauffeur,Ajman,minivan chauffeur group travel Ajman
+Q137,chauffeur,Ras Al Khaimah,diplomatic chauffeur service Ras Al Khaimah
+Q138,chauffeur,Al Ain,chauffeur for school pickup Al Ain
+Q139,chauffeur,Salalah,chauffeur with child seat Salalah
+Q140,chauffeur,Khobar,night shift chauffeur Khobar
+Q141,chauffeur,Fujairah,chauffeur service Fujairah
+Q142,chauffeur,Umm Al Quwain,limo hire Umm Al Quwain
+Q143,chauffeur,Mecca,chauffeur for Umrah pilgrims Mecca
+Q144,chauffeur,Medina,chauffeur service Medina
+Q145,chauffeur,Taif,car with driver Taif
+Q146,chauffeur,Sohar,chauffeur service Sohar Oman
+Q147,chauffeur,Nizwa,car rental with driver Nizwa
+Q148,chauffeur,Buraimi,chauffeur hire Buraimi
+Q149,chauffeur,Dubai,electric car chauffeur Dubai
+Q150,chauffeur,Abu Dhabi,one way airport drop chauffeur Abu Dhabi
+Q151,kayaking,Diu,kayaking tour Diu
+Q152,kayaking,Daman,kayak rental Daman
+Q153,kayaking,Lakshadweep,kayaking tour Lakshadweep
+Q154,kayaking,Mahabalipuram,kayaking experience Mahabalipuram
+Q155,kayaking,Netrani Island,kayaking tour Netrani Island
+Q156,kayaking,Malvan,kayak rental Malvan
+Q157,kayaking,Tarkarli,kayaking tour Tarkarli
+Q158,kayaking,Murudeshwar,kayaking near Murudeshwar
+Q159,kayaking,Honnavar,kayak rental Honnavar
+Q160,kayaking,Maravanthe,kayaking tour Maravanthe beach
+Q161,kayaking,Kannur,kayaking in Valapattanam river Kannur
+Q162,kayaking,Payyanur,kayak rental Payyanur
+Q163,kayaking,Thalassery,kayaking tour Thalassery
+Q164,kayaking,Kochi,kayaking in Kumbalangi Kochi
+Q165,kayaking,Kochi,kayak rental Fort Kochi
+Q166,kayaking,Kollam,kayaking Munroe Island Kollam
+Q167,kayaking,Thiruvananthapuram,kayaking tour Poovar
+Q168,kayaking,Thiruvananthapuram,kayaking Neyyar Dam
+Q169,kayaking,Thekkady,kayaking tour Periyar Thekkady
+Q170,kayaking,Vagamon,kayak rental Vagamon
+Q171,kayaking,Idukki,kayaking Idukki dam
+Q172,kayaking,Wayanad,kayaking Banasura Sagar dam
+Q173,kayaking,Wayanad,kayak rental Pookode lake
+Q174,kayaking,Alappuzha,kayaking tour Kuttanad
+Q175,kayaking,Alappuzha,kayak rental Thanneermukkom
+Q176,dental,Guwahati,best dental clinic Guwahati
+Q177,dental,Patna,dental implants Patna
+Q178,dental,Ranchi,emergency dentist Ranchi
+Q179,dental,Bhubaneswar,pediatric dental clinic Bhubaneswar
+Q180,dental,Chandigarh,cosmetic dentist Chandigarh
+Q181,dental,Amritsar,dental clinic Amritsar
+Q182,dental,Ludhiana,root canal treatment Ludhiana
+Q183,dental,Kanpur,braces and orthodontist Kanpur
+Q184,dental,Varanasi,wisdom tooth extraction Varanasi
+Q185,dental,Agra,dental clinic for veneers Agra
+Q186,dental,Vadodara,best dentist Vadodara
+Q187,dental,Rajkot,dental implants Rajkot
+Q188,dental,Nashik,dental clinic Nashik
+Q189,dental,Aurangabad,gum treatment clinic Aurangabad
+Q190,dental,Thrissur,denture clinic Thrissur
+Q191,dental,Kollam,dental scaling and cleaning Kollam
+Q192,dental,Kannur,invisalign clinic Kannur
+Q193,dental,Salem,emergency dental care Salem
+Q194,dental,Tiruchirappalli,best orthodontist Trichy
+Q195,dental,Vellore,teeth whitening clinic Vellore
+Q196,dental,Mangalore,dental crown treatment Mangalore
+Q197,dental,Belgaum,pediatric dentist Belgaum
+Q198,dental,Hubli,dental clinic Hubli
+Q199,dental,Warangal,dental implants Warangal
+Q200,dental,Guntur,best dental clinic Guntur
+Q201,gym,Varanasi,best gym in Varanasi for weight training
+Q202,gym,Vadodara,top rated gym in Vadodara with personal trainers
+Q203,gym,Nashik,affordable gym membership Nashik
+Q204,gym,Bhubaneswar,24 hour gym Bhubaneswar
+Q205,gym,Raipur,best gym in Raipur for weight training
+Q206,gym,Jodhpur,ladies gym Jodhpur
+Q207,gym,Agra,best crossfit gym Agra
+Q208,gym,Meerut,gym with personal trainer Meerut
+Q209,gym,Faridabad,affordable gym membership Faridabad
+Q210,gym,Ludhiana,24 hour gym Ludhiana
+Q211,gym,Amritsar,best gym in Amritsar for weight training
+Q212,gym,Jalandhar,ladies gym Jalandhar
+Q213,gym,Dehradun,best crossfit gym Dehradun
+Q214,gym,Shimla,gym with personal trainer Shimla
+Q215,gym,Jammu,affordable gym membership Jammu
+Q216,gym,Gurgaon,24 hour gym Gurgaon
+Q217,gym,Noida,best gym in Noida for weight training
+Q218,gym,Rajkot,ladies gym Rajkot
+Q219,gym,Aurangabad,best crossfit gym Aurangabad
+Q220,gym,Belgaum,gym with personal trainer Belgaum
+Q221,gym,Hubli,affordable gym membership Hubli
+Q222,gym,Vellore,24 hour gym Vellore
+Q223,gym,Salem,best gym in Salem for weight training
+Q224,gym,Tiruchirappalli,ladies gym Tiruchirappalli
+Q225,gym,Warangal,best crossfit gym Warangal
+Q226,chauffeur,Al Khor,best chauffeur service in Al Khor for airport transfer
+Q227,chauffeur,Al Rayyan,luxury limo rental Al Rayyan
+Q228,chauffeur,Al Wakrah,hourly chauffeur hire Al Wakrah
+Q229,chauffeur,Ibri,best chauffeur service in Ibri for airport transfer
+Q230,chauffeur,Sur,luxury limo rental Sur
+Q231,chauffeur,Rustaq,hourly chauffeur hire Rustaq
+Q232,chauffeur,Seeb,best chauffeur service in Seeb for airport transfer
+Q233,chauffeur,Bahla,luxury limo rental Bahla
+Q234,chauffeur,Al Hofuf,hourly chauffeur hire Al Hofuf
+Q235,chauffeur,Tabuk,best chauffeur service in Tabuk for airport transfer
+Q236,chauffeur,Yanbu,luxury limo rental Yanbu
+Q237,chauffeur,Najran,hourly chauffeur hire Najran
+Q238,chauffeur,Abha,best chauffeur service in Abha for airport transfer
+Q239,chauffeur,Jubail,luxury limo rental Jubail
+Q240,chauffeur,Buraydah,hourly chauffeur hire Buraydah
+Q241,chauffeur,Duqm,best chauffeur service in Duqm for airport transfer
+Q242,chauffeur,Hatta,luxury limo rental Hatta
+Q243,chauffeur,Dibba,hourly chauffeur hire Dibba
+Q244,chauffeur,Liwa,best chauffeur service in Liwa for airport transfer
+Q245,chauffeur,Khasab,luxury limo rental Khasab
+Q246,chauffeur,Barka,hourly chauffeur hire Barka
+Q247,chauffeur,Khamis Mushait,best chauffeur service in Khamis Mushait for airport transfer
+Q248,chauffeur,Hail,luxury limo rental Hail
+Q249,chauffeur,Jizan,hourly chauffeur hire Jizan
+Q250,chauffeur,Ibra,best chauffeur service in Ibra for airport transfer
+Q251,kayaking,Havelock Island,best kayaking tour in Havelock Island backwaters
+Q252,kayaking,Neil Island,guided kayaking experience Neil Island
+Q253,kayaking,Mandvi,sunset kayaking tour Mandvi
+Q254,kayaking,Dwarka,best kayaking tour in Dwarka backwaters
+Q255,kayaking,Somnath,guided kayaking experience Somnath
+Q256,kayaking,Veraval,sunset kayaking tour Veraval
+Q257,kayaking,Ratnagiri,best kayaking tour in Ratnagiri backwaters
+Q258,kayaking,Sindhudurg,guided kayaking experience Sindhudurg
+Q259,kayaking,Malpe,sunset kayaking tour Malpe
+Q260,kayaking,Kundapura,best kayaking tour in Kundapura backwaters
+Q261,kayaking,Bhatkal,guided kayaking experience Bhatkal
+Q262,kayaking,Karwar,sunset kayaking tour Karwar
+Q263,kayaking,Chorao Island,best kayaking tour in Chorao Island backwaters
+Q264,kayaking,Divar Island,guided kayaking experience Divar Island
+Q265,kayaking,Kappad,sunset kayaking tour Kappad
+Q266,kayaking,Nileshwaram,best kayaking tour in Nileshwaram backwaters
+Q267,kayaking,Beypore,guided kayaking experience Beypore
+Q268,kayaking,Ponnani,sunset kayaking tour Ponnani
+Q269,kayaking,Chavakkad,best kayaking tour in Chavakkad backwaters
+Q270,kayaking,Marari,guided kayaking experience Marari
+Q271,kayaking,Poovar,sunset kayaking tour Poovar
+Q272,kayaking,Neendakara,best kayaking tour in Neendakara backwaters
+Q273,kayaking,Kasaragod,guided kayaking experience Kasaragod
+Q274,kayaking,Kavaratti,sunset kayaking tour Kavaratti
+Q275,kayaking,Minicoy,best kayaking tour in Minicoy backwaters
+Q276,dental,Jalandhar,best dental clinic in Jalandhar for implants
+Q277,dental,Jodhpur,emergency dentist Jodhpur open now
+Q278,dental,Noida,pediatric dental clinic Noida
+Q279,dental,Gurgaon,best dental clinic in Gurgaon for implants
+Q280,dental,Faridabad,emergency dentist Faridabad open now
+Q281,dental,Meerut,pediatric dental clinic Meerut
+Q282,dental,Dehradun,best dental clinic in Dehradun for implants
+Q283,dental,Jammu,emergency dentist Jammu open now
+Q284,dental,Raipur,pediatric dental clinic Raipur
+Q285,dental,Bhilai,best dental clinic in Bhilai for implants
+Q286,dental,Durgapur,emergency dentist Durgapur open now
+Q287,dental,Siliguri,pediatric dental clinic Siliguri
+Q288,dental,Jamshedpur,best dental clinic in Jamshedpur for implants
+Q289,dental,Dhanbad,emergency dentist Dhanbad open now
+Q290,dental,Gwalior,pediatric dental clinic Gwalior
+Q291,dental,Jabalpur,best dental clinic in Jabalpur for implants
+Q292,dental,Ujjain,emergency dentist Ujjain open now
+Q293,dental,Kota,pediatric dental clinic Kota
+Q294,dental,Udaipur,best dental clinic in Udaipur for implants
+Q295,dental,Ajmer,emergency dentist Ajmer open now
+Q296,dental,Bikaner,pediatric dental clinic Bikaner
+Q297,dental,Shimla,best dental clinic in Shimla for implants
+Q298,dental,Srinagar,emergency dentist Srinagar open now
+Q299,dental,Asansol,pediatric dental clinic Asansol
+Q300,dental,Bokaro,best dental clinic in Bokaro for implants

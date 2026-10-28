@@ -1,0 +1,143 @@
+"""
+Compute real, reproducible pilot statistics from the collected data.
+
+Writes data/pilot_stats.json (consumed by the Streamlit Model Card page)
+and docs/PILOT_REPORT.md (human-readable).
+
+Usage:
+    python -m pipeline.pilot_stats
+"""
+import csv
+import json
+import os
+from collections import defaultdict, Counter
+
+from pipeline.common import MIN_USABLE_ROWS, MIN_MINORITY_CLASS
+
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def load_json(path, default):
+    if not os.path.exists(path):
+        return default
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def load_csv(path):
+    if not os.path.exists(path):
+        return []
+    with open(path, newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+def main():
+    citations_path = os.path.join(REPO_ROOT, "data", "citations.json")
+    dataset_path = os.path.join(REPO_ROOT, "data", "dataset.csv")
+
+    citations = load_json(citations_path, [])
+    dataset = load_csv(dataset_path)
+
+    if not citations:
+        print("No data/citations.json found. Run the pipeline's earlier steps first "
+              "(collect_citations.py, collect_candidates.py, build_dataset.py).")
+        stats = {"underpowered": True, "note": "NOT YET MEASURED — no real data collected yet."}
+        _write(stats)
+        return
+
+    num_queries = len(citations)
+    # Total citation records collected, regardless of how they were collected
+    # (manual copy-paste from the web UI or a real paid API call). This is
+    # NOT a count of paid API calls — see real_api_calls_logged below.
+    citation_records_collected = sum(1 for _ in citations)
+    # Only records whose collection_method is an actual API call count here.
+    # For this project's real pilot (100% manual_web_ui), this is 0.
+    real_api_calls_logged = sum(
+        1 for c in citations if c.get("collection_method") not in (None, "manual_web_ui")
+    )
+
+    cites_per_query = [len(c.get("cited_urls", [])) for c in citations]
+
+    def mean(xs):
+        return sum(xs) / len(xs) if xs else 0.0
+
+    def median(xs):
+        s = sorted(xs)
+        n = len(s)
+        if n == 0:
+            return 0.0
+        mid = n // 2
+        return s[mid] if n % 2 else (s[mid - 1] + s[mid]) / 2
+
+    stats = {
+        "num_queries": num_queries,
+        "citation_records_collected": citation_records_collected,
+        "real_api_calls_logged": real_api_calls_logged,
+        "citations_per_query": {
+            "mean": round(mean(cites_per_query), 2),
+            "median": median(cites_per_query),
+            "min": min(cites_per_query) if cites_per_query else 0,
+            "max": max(cites_per_query) if cites_per_query else 0,
+        },
+    }
+
+    if dataset:
+        n_rows = len(dataset)
+        labels = [int(r["label"]) for r in dataset]
+        positive = sum(labels)
+        status_counts = Counter(r["scrape_status"] for r in dataset)
+        usable = status_counts.get("ok", 0)
+        domain_types_cited = Counter(
+            r["domain_type"] for r in dataset if int(r["label"]) == 1
+        )
+        duplicate_rate = sum(1 for r in dataset if r.get("is_duplicate_template") == "True") / n_rows if n_rows else 0.0
+
+        stats.update({
+            "total_candidate_rows": n_rows,
+            "usable_rows": usable,
+            "scrape_status_counts": dict(status_counts),
+            "scrape_success_rate": round(usable / n_rows, 3) if n_rows else 0.0,
+            "class_balance": {"positive": positive, "negative": n_rows - positive},
+            "positive_rate_display": f"{round(100 * positive / n_rows, 1)}%" if n_rows else "not yet measured",
+            "share_cited_that_are_directory_or_aggregator": (
+                round(domain_types_cited.get("directory_aggregator", 0) / max(positive, 1), 3)
+            ),
+            "duplicate_domain_rate": round(duplicate_rate, 3),
+        })
+
+        # underpowered heuristic: too few usable rows or too few positives/negatives.
+        # Thresholds come from pipeline.common so this can never disagree with
+        # the same flag computed in pipeline.evaluate.
+        min_class = min(positive, n_rows - positive) if n_rows else 0
+        stats["underpowered"] = usable < MIN_USABLE_ROWS or min_class < MIN_MINORITY_CLASS
+    else:
+        stats["underpowered"] = True
+        stats["note"] = "NOT YET MEASURED — data/dataset.csv not built yet (run pipeline.build_dataset)."
+
+    _write(stats)
+
+
+def _write(stats):
+    out_json = os.path.join(REPO_ROOT, "data", "pilot_stats.json")
+    with open(out_json, "w", encoding="utf-8") as f:
+        json.dump(stats, f, indent=2)
+
+    out_md = os.path.join(REPO_ROOT, "docs", "PILOT_REPORT.md")
+    os.makedirs(os.path.dirname(out_md), exist_ok=True)
+    with open(out_md, "w", encoding="utf-8") as f:
+        f.write("# Pilot Data Report\n\n")
+        f.write("Generated by `python -m pipeline.pilot_stats`. All numbers below come "
+                "directly from `data/pilot_stats.json` — nothing here is hand-typed.\n\n")
+        f.write("```json\n")
+        f.write(json.dumps(stats, indent=2))
+        f.write("\n```\n")
+        if stats.get("underpowered"):
+            f.write("\n**underpowered: true** — treat any model metrics from this pilot as "
+                    "preliminary, not strong evidence.\n")
+
+    print(f"Wrote {out_json} and {out_md}")
+    print(json.dumps(stats, indent=2))
+
+
+if __name__ == "__main__":
+    main()

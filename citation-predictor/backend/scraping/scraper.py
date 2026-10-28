@@ -7,7 +7,8 @@ import re
 import ipaddress
 import logging
 import socket
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
+from urllib.robotparser import RobotFileParser
 
 import requests
 from bs4 import BeautifulSoup
@@ -24,15 +25,6 @@ BLOCKED_HOSTS = {
     "::1",
     "0.0.0.0",
 }
-
-BLOCKED_RANGES = [
-    ipaddress.ip_network("10.0.0.0/8"),
-    ipaddress.ip_network("172.16.0.0/12"),
-    ipaddress.ip_network("192.168.0.0/16"),
-    ipaddress.ip_network("169.254.0.0/16"),  # link-local / cloud metadata
-    ipaddress.ip_network("::1/128"),
-    ipaddress.ip_network("fc00::/7"),
-]
 
 HEADERS = {
     "User-Agent": (
@@ -75,11 +67,68 @@ def _check_ssrf(url: str) -> None:
     except ValueError:
         raise ScrapingError(f"Invalid IP resolved for '{host}'.")
 
-    for network in BLOCKED_RANGES:
-        if ip in network:
-            raise ScrapingError(
-                f"Requests to private/internal IP addresses are not allowed ({ip_str})."
-            )
+    # Classify via ipaddress' built-in properties rather than a hand-maintained
+    # list of CIDR ranges. The previous list omitted 127.0.0.0/8 (the full
+    # IPv4 loopback block) and only caught the exact literal "127.0.0.1" via
+    # BLOCKED_HOSTS above, so any other loopback address (e.g. 127.0.0.2,
+    # reachable via attacker-controlled DNS or a literal URL) slipped through
+    # this check entirely. is_loopback/is_private/etc. cover every private,
+    # loopback, link-local (incl. cloud metadata), reserved, multicast and
+    # unspecified address for both IPv4 and IPv6 without needing the ranges
+    # to be enumerated by hand.
+    if (
+        ip.is_private
+        or ip.is_loopback
+        or ip.is_link_local
+        or ip.is_reserved
+        or ip.is_multicast
+        or ip.is_unspecified
+    ):
+        raise ScrapingError(
+            f"Requests to private/internal IP addresses are not allowed ({ip_str})."
+        )
+
+
+MAX_REDIRECTS = 5
+_ROBOTS_CACHE: dict = {}
+
+
+def _check_robots_txt(url: str) -> None:
+    """Raise ScrapingError if robots.txt disallows our user-agent on this path.
+
+    Cached per-host for the lifetime of the process so a batch pipeline run
+    doesn't refetch robots.txt for every page on the same domain.
+    """
+    parsed = urlparse(url)
+    origin = f"{parsed.scheme}://{parsed.netloc}"
+    if origin not in _ROBOTS_CACHE:
+        robots_url = urljoin(origin, "/robots.txt")
+        rp = None
+        try:
+            # RobotFileParser.read() does its own fetch with urllib's default
+            # User-Agent ("Python-urllib/x.y"), which sites like Wikipedia
+            # reject with a 403 on robots.txt itself. read() swallows that
+            # HTTP error internally and sets disallow_all=True -- "I couldn't
+            # check" silently becomes "block everything", even though the
+            # real robots.txt (fetched with our actual identified UA, same
+            # as the one making the real page request) would allow the page.
+            # Fetching it ourselves and handing the text to rp.parse() keeps
+            # the real Disallow rules in effect while avoiding that false
+            # fail-closed.
+            resp = requests.get(robots_url, headers=HEADERS, timeout=TIMEOUT)
+            if resp.status_code < 400:
+                rp = RobotFileParser()
+                rp.parse(resp.text.splitlines())
+            # 4xx/5xx on robots.txt itself (including a block on the fetch
+            # attempt) -- default to allow, matching how most sites with no
+            # reachable robots.txt behave.
+        except requests.RequestException:
+            rp = None
+        _ROBOTS_CACHE[origin] = rp
+
+    rp = _ROBOTS_CACHE[origin]
+    if rp is not None and not rp.can_fetch(HEADERS["User-Agent"], url):
+        raise ScrapingError("robots.txt disallows fetching this URL for our user-agent.")
 
 
 def scrape(url: str) -> dict:
@@ -89,18 +138,38 @@ def scrape(url: str) -> dict:
       - raw_html: str
       - status_code: int
       - final_url: str (after redirects)
+
+    Redirects are followed manually (allow_redirects=False) with _check_ssrf
+    re-run on every hop. requests' own allow_redirects=True does its own DNS
+    resolution on each redirect target without re-validating it, which would
+    let a malicious URL 302 to a private/internal IP and bypass the SSRF
+    guard entirely.
     """
-    _check_ssrf(url)
+    current_url = url
+    _check_ssrf(current_url)
+    _check_robots_txt(current_url)
 
     try:
-        resp = requests.get(
-            url,
-            headers=HEADERS,
-            timeout=TIMEOUT,
-            allow_redirects=True,
-            stream=True,
-        )
-        resp.raise_for_status()
+        for _ in range(MAX_REDIRECTS + 1):
+            resp = requests.get(
+                current_url,
+                headers=HEADERS,
+                timeout=TIMEOUT,
+                allow_redirects=False,
+                stream=True,
+            )
+            if resp.is_redirect or resp.is_permanent_redirect:
+                next_url = resp.headers.get("Location")
+                if not next_url:
+                    raise ScrapingError("Redirect response had no Location header.")
+                current_url = urljoin(current_url, next_url)
+                _check_ssrf(current_url)
+                _check_robots_txt(current_url)
+                continue
+            resp.raise_for_status()
+            break
+        else:
+            raise ScrapingError("Too many redirects while fetching the URL.")
     except requests.exceptions.Timeout:
         raise ScrapingError("The request timed out. The website may be slow or unreachable.")
     except requests.exceptions.TooManyRedirects:
